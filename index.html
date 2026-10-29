@@ -1,0 +1,268 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#10151f">
+<title>DH SERVICES | خدماتك أقرب إليك</title>
+<style>
+:root{--bg:#0b1018;--panel:#151d29;--gold:#d9ae55;--white:#f5f5f5;--muted:#9ba8b8}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Tahoma,sans-serif}
+header{background:#111925;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #293443;position:sticky;top:0;z-index:10}
+.logo{font-size:23px;font-weight:bold;color:var(--gold)}
+.logo span{color:white}
+nav a{color:white;text-decoration:none;margin:0 9px;font-size:13px}
+button{cursor:pointer;border:0;border-radius:9px;padding:11px 17px;font-weight:bold}
+.gold{background:var(--gold);color:#171717}
+.outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
+.hero{padding:65px 7% 55px;background:linear-gradient(120deg,#111c2b,#10141c 70%,#292014)}
+.hero h1{font-size:38px;margin:12px 0;color:white}
+.hero h1 span{color:var(--gold)}
+.hero p{color:#c1c9d3;line-height:1.9;max-width:600px}
+.search{display:flex;gap:8px;max-width:650px;margin-top:25px;background:white;padding:7px;border-radius:12px}
+.search input{flex:1;min-width:0;border:0;padding:10px;outline:0;font-size:15px}
+.stats{display:flex;gap:30px;margin-top:30px;color:#ddd;font-size:13px}
+.stats b{display:block;color:var(--gold);font-size:21px;margin-bottom:5px}
+section{padding:38px 6%}
+.heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:22px}
+.heading h2{font-size:23px;margin:0}
+.heading span{color:var(--gold)}
+.categories{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.cat{background:var(--panel);border:1px solid #283545;border-radius:13px;padding:19px 8px;text-align:center;cursor:pointer;transition:.2s}
+.cat:hover{border-color:var(--gold);transform:translateY(-3px)}
+.cat .emoji{font-size:30px}
+.cat h3{font-size:14px;margin:10px 0 4px}
+.cat small{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--panel);border:1px solid #293544;border-radius:13px;padding:18px}
+.card .symbol{font-size:32px}
+.card h3{margin:10px 0}
+.card p{font-size:13px;color:var(--muted);line-height:1.7}
+.tag{display:inline-block;color:var(--gold);font-size:12px;background:#302819;padding:6px 9px;border-radius:20px}
+.card button{margin-top:13px;width:100%}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.feature{background:#141d29;padding:20px;border-radius:12px;border:1px solid #293544}
+.feature b{display:block;margin:9px 0;color:var(--gold)}
+.feature p{color:var(--muted);font-size:13px;line-height:1.7}
+.cta{background:linear-gradient(110deg,#292014,#151c28);border:1px solid #57452b;border-radius:17px;padding:30px;text-align:center}
+footer{background:#080d14;padding:30px 6%;color:var(--muted);font-size:13px;line-height:2}
+footer strong{color:var(--gold)}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:30;align-items:center;justify-content:center;padding:15px}
+.modalbox{background:#172130;border:1px solid var(--gold);border-radius:15px;padding:23px;width:100%;max-width:420px}
+.modalbox input,.modalbox select,.modalbox textarea{width:100%;padding:12px;margin:7px 0 12px;background:#0d1520;border:1px solid #344354;color:white;border-radius:8px}
+.modalbox label{font-size:13px;color:#d5dce5}
+.close{float:left;color:var(--gold);background:transparent;font-size:20px;padding:0}
+.empty{color:var(--muted);text-align:center;padding:20px;display:none}
+@media(max-width:700px){
+ nav{display:none}
+ .hero{padding:45px 6%}
+ .hero h1{font-size:29px}
+ .categories{grid-template-columns:repeat(2,1fr)}
+ .cards{grid-template-columns:1fr}
+ .features{grid-template-columns:1fr}
+ .stats{gap:15px}
+ .heading h2{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">DH <span>SERVICES</span></div>
+ <nav>
+  <a href="#home">الرئيسية</a>
+  <a href="#categories">الخدمات</a>
+  <a href="#providers">مقدمو الخدمات</a>
+  <a href="#about">عن المنصة</a>
+ </nav>
+ <button class="gold" onclick="openModal()">اطلب خدمة</button>
+</header>
+
+<div class="hero" id="home">
+ <span class="tag">منصة الخدمات الجزائرية</span>
+ <h1>كل الخدمات في <span>مكان واحد</span></h1>
+ <p>ابحث عن الحرفيين والمحترفين، احجز خدماتك، قارن الأسعار وتواصل مع مقدمي الخدمات بسهولة.</p>
+ <div class="search">
+  <input id="searchInput" placeholder="ما الخدمة التي تبحث عنها؟">
+  <button class="gold" onclick="searchServices()">بحث</button>
+ </div>
+ <div class="stats">
+  <div><b>24/7</b>سهولة الوصول</div>
+  <div><b>48</b>ولاية جزائرية</div>
+  <div><b>∞</b>فرص وخدمات</div>
+ </div>
+</div>
+
+<section id="categories">
+ <div class="heading">
+  <h2>استكشف <span>الخدمات</span></h2>
+  <small style="color:var(--muted)">اختر القسم المناسب</small>
+ </div>
+ <div class="categories" id="categoryGrid">
+  <div class="cat" onclick="filterCategory('المنزل والسيارات')"><div class="emoji">🏠</div><h3>المنزل والسيارات</h3><small>صيانة وإصلاح</small></div>
+  <div class="cat" onclick="filterCategory('النقل والتوصيل')"><div class="emoji">🚚</div><h3>النقل والتوصيل</h3><small>نقل وطلبات</small></div>
+  <div class="cat" onclick="filterCategory('التعليم والمناسبات')"><div class="emoji">🎓</div><h3>التعليم والمناسبات</h3><small>دروس وتنظيم</small></div>
+  <div class="cat" onclick="filterCategory('الخدمات الرقمية')"><div class="emoji">💻</div><h3>الخدمات الرقمية</h3><small>تصميم وبرمجة</small></div>
+  <div class="cat" onclick="filterCategory('التجارة والمتجر')"><div class="emoji">🛒</div><h3>المتجر وقطع الغيار</h3><small>منتجات ومعدات</small></div>
+  <div class="cat" onclick="filterCategory('الخدمات المهنية')"><div class="emoji">🧰</div><h3>الخدمات المهنية</h3><small>شركات ومحترفون</small></div>
+  <div class="cat" onclick="filterCategory('الصحة والجمال')"><div class="emoji">💈</div><h3>الجمال والعناية</h3><small>خدمات شخصية</small></div>
+  <div class="cat" onclick="filterCategory('الفلاحة والحدائق')"><div class="emoji">🌱</div><h3>الفلاحة والحدائق</h3><small>خدمات زراعية</small></div>
+ </div>
+</section>
+
+<section id="providers">
+ <div class="heading">
+  <h2>خدمات <span>مميزة</span></h2>
+  <button class="outline" onclick="showAll()">عرض الكل</button>
+ </div>
+ <div class="cards" id="serviceCards">
+  <div class="card" data-category="المنزل والسيارات" data-name="كهربائي منازل">
+   <div class="symbol">⚡</div><span class="tag">المنزل والسيارات</span>
+   <h3>كهربائي منازل</h3>
+   <p>خدمات تركيب وإصلاح الكهرباء المنزلية.</p>
+   <button class="gold" onclick="book('كهربائي منازل')">اطلب الخدمة</button>
+  </div>
+  <div class="card" data-category="النقل والتوصيل" data-name="النقل والتوصيل">
+   <div class="symbol">🚛</div><span class="tag">النقل والتوصيل</span>
+   <h3>النقل والتوصيل</h3>
+   <p>نقل الأغراض والطرود والطلبات.</p>
+   <button class="gold" onclick="book('النقل والتوصيل')">اطلب الخدمة</button>
+  </div>
+  <div class="card" data-category="الخدمات الرقمية" data-name="تصميم المواقع">
+   <div class="symbol">🎨</div><span class="tag">الخدمات الرقمية</span>
+   <h3>تصميم المواقع</h3>
+   <p>إنشاء مواقع وصفحات إلكترونية احترافية.</p>
+   <button class="gold" onclick="book('تصميم المواقع')">اطلب الخدمة</button>
+  </div>
+  <div class="card" data-category="التعليم والمناسبات" data-name="الدروس الخصوصية">
+   <div class="symbol">📚</div><span class="tag">التعليم والمناسبات</span>
+   <h3>الدروس الخصوصية</h3>
+   <p>دروس ومرافقة تعليمية لمختلف المستويات.</p>
+   <button class="gold" onclick="book('الدروس الخصوصية')">اطلب الخدمة</button>
+  </div>
+  <div class="card" data-category="المنزل والسيارات" data-name="ميكانيكي سيارات">
+   <div class="symbol">🚗</div><span class="tag">المنزل والسيارات</span>
+   <h3>ميكانيكي سيارات</h3>
+   <p>تشخيص أعطال وصيانة السيارات.</p>
+   <button class="gold" onclick="book('ميكانيكي سيارات')">اطلب الخدمة</button>
+  </div>
+  <div class="card" data-category="الخدمات المهنية" data-name="تنظيف المنازل">
+   <div class="symbol">🧹</div><span class="tag">الخدمات المهنية</span>
+   <h3>تنظيف المنازل</h3>
+   <p>خدمات تنظيف وترتيب المنازل والمكاتب.</p>
+   <button class="gold" onclick="book('تنظيف المنازل')">اطلب الخدمة</button>
+  </div>
+ </div>
+ <div class="empty" id="empty">لا توجد نتائج. جرّب بحثاً آخر.</div>
+</section>
+
+<section id="about">
+ <div class="heading"><h2>مميزات <span>DH SERVICES</span></h2></div>
+ <div class="features">
+  <div class="feature"><div class="symbol">📍</div><b>الخريطة والموقع</b><p>العثور على الخدمات حسب الولاية والبلدية والموقع.</p></div>
+  <div class="feature"><div class="symbol">📅</div><b>الحجز والمواعيد</b><p>إرسال طلبات الحجز وتحديد المواعيد المناسبة.</p></div>
+  <div class="feature"><div class="symbol">💬</div><b>التواصل المباشر</b><p>مساحة للمحادثة بين الزبائن ومقدمي الخدمات.</p></div>
+  <div class="feature"><div class="symbol">⭐</div><b>التقييم والتوثيق</b><p>تقييمات ومراجعة بيانات مقدمي الخدمات.</p></div>
+  <div class="feature"><div class="symbol">🤖</div><b>مساعد الذكاء الاصطناعي</b><p>المساعدة في اختيار القسم والخدمة المناسبة.</p></div>
+  <div class="feature"><div class="symbol">🛡️</div><b>لوحة الإدارة</b><p>إدارة المستخدمين والطلبات والإحصائيات.</p></div>
+ </div>
+</section>
+
+<section>
+ <div class="cta">
+  <h2>هل تقدم خدمة؟</h2>
+  <p style="color:#c1c9d3">انضم إلى DH SERVICES واعرض خدماتك لعملاء جدد.</p>
+  <button class="gold" onclick="openModal('تسجيل مقدم خدمة')">سجل كمقدم خدمة</button>
+ </div>
+</section>
+
+<footer>
+ <strong>DH SERVICES</strong><br>
+ خدماتك أقرب إليك – Your Services, One Platform.<br>
+ الجزائر 🇩🇿 | منصة لربط الزبائن بمقدمي الخدمات.<br>
+ © 2026 DH SERVICES – جميع الحقوق محفوظة.
+</footer>
+
+<div class="modal" id="bookingModal">
+ <div class="modalbox">
+  <button class="close" onclick="closeModal()">✕</button>
+  <h2 style="color:var(--gold)" id="modalTitle">طلب خدمة</h2>
+  <form id="requestForm">
+   <label>الاسم الكامل</label>
+   <input id="clientName" required placeholder="اسمك">
+   <label>رقم الهاتف</label>
+   <input id="clientPhone" required type="tel" placeholder="رقم الهاتف">
+   <label>الخدمة المطلوبة</label>
+   <input id="serviceName" required>
+   <label>الولاية</label>
+   <input id="clientCity" required placeholder="مثلاً: بشار">
+   <label>تفاصيل الطلب</label>
+   <textarea id="details" rows="3" placeholder="اشرح ما تحتاجه"></textarea>
+   <button class="gold" style="width:100%" type="submit">إرسال الطلب التجريبي</button>
+  </form>
+  <p id="formMessage" style="color:var(--gold);font-size:13px"></p>
+ </div>
+</div>
+
+<script>
+const modal=document.getElementById('bookingModal');
+
+function openModal(title){
+ document.getElementById('modalTitle').textContent=title||'طلب خدمة';
+ modal.style.display='flex';
+}
+function closeModal(){modal.style.display='none'}
+function book(name){
+ document.getElementById('serviceName').value=name;
+ openModal('طلب '+name);
+}
+function filterCategory(category){
+ const cards=document.querySelectorAll('.card');
+ let count=0;
+ cards.forEach(card=>{
+  const show=card.dataset.category===category;
+  card.style.display=show?'block':'none';
+  if(show)count++;
+ });
+ document.getElementById('empty').style.display=count?'none':'block';
+ document.getElementById('providers').scrollIntoView({behavior:'smooth'});
+}
+function showAll(){
+ document.querySelectorAll('.card').forEach(c=>c.style.display='block');
+ document.getElementById('empty').style.display='none';
+}
+function searchServices(){
+ const query=document.getElementById('searchInput').value.trim().toLowerCase();
+ let count=0;
+ document.querySelectorAll('.card').forEach(card=>{
+  const match=(card.dataset.name+' '+card.dataset.category+' '+card.innerText).toLowerCase().includes(query);
+  card.style.display=match?'block':'none';
+  if(match)count++;
+ });
+ document.getElementById('empty').style.display=count?'none':'block';
+ document.getElementById('providers').scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('searchInput').addEventListener('keydown',e=>{
+ if(e.key==='Enter')searchServices();
+});
+document.getElementById('requestForm').addEventListener('submit',function(e){
+ e.preventDefault();
+ const request={
+  name:document.getElementById('clientName').value,
+  phone:document.getElementById('clientPhone').value,
+  service:document.getElementById('serviceName').value,
+  city:document.getElementById('clientCity').value,
+  details:document.getElementById('details').value
+ };
+ let requests=JSON.parse(localStorage.getItem('dh_requests')||'[]');
+ requests.push(request);
+ localStorage.setItem('dh_requests',JSON.stringify(requests));
+ document.getElementById('formMessage').textContent='تم حفظ الطلب على هذا الجهاز كنسخة تجريبية. لم يتم إرساله إلى مقدم خدمة.';
+ this.reset();
+});
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+</script>
+</body>
+</html>
